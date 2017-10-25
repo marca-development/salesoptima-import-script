@@ -44,7 +44,7 @@ class Saleoptima
       txtPhone:									      customer.formated_phone,
       txtWebSite:									    customer.url,
       txtCompanyName:									customer.company,
-      txtComments:									  customer.comment,
+      txtComments:							customer.comment,
       txtForceOwner:								  customer.force_owner
     }
   end
