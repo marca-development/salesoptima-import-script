@@ -44,13 +44,13 @@ class Saleoptima
       txtPhone:									      customer.formated_phone,
       txtWebSite:									    customer.url,
       txtCompanyName:									customer.company,
-      txtComments:							customer.comment,
+      txtComments:							customer.format_comment,
       txtForceOwner:								  customer.force_owner
     }
   end
 end
 
-Customer = Struct.new(:full_name, :company, :url, :phone, :email, :comment, :force_owner) do
+Customer = Struct.new(:full_name, :company, :url, :phone, :email, :comment, :force_owner, :source) do
   def first_name
     full_name || company
   end
@@ -63,6 +63,10 @@ Customer = Struct.new(:full_name, :company, :url, :phone, :email, :comment, :for
     return phone.gsub(/\D/, '') if phone
     nil
   end
+
+  def format_comment
+    "#{source} - #{comment}"
+  end
 end
 
 CSV.foreach('customers.csv', :headers => true) do |row|
@@ -73,7 +77,8 @@ CSV.foreach('customers.csv', :headers => true) do |row|
     row["Phone Number"],
     row["Email"],
     row["Comments"],
-    row["Force Owner"]
+    row["Force Owner"],
+    row["Source"]
   )
   Saleoptima.call(customer)
 end
