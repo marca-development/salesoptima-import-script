@@ -69,7 +69,7 @@ Customer = Struct.new(:full_name, :company, :url, :phone, :email, :comment, :for
   end
 end
 
-CSV.foreach('customers.csv', :headers => true) do |row|
+CSV.foreach('customers.csv', :headers => true, encoding: "iso-8859-1:UTF-8") do |row|
   customer = Customer.new(
     row["Full Name"],
     row["Company"],
