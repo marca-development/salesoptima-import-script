@@ -65,7 +65,7 @@ Customer = Struct.new(:full_name, :company, :url, :phone, :email, :comment, :for
   end
 
   def format_comment
-    "#{source} - #{comment}"
+    "#{source} - #{comment} - #{url}"
   end
 end
 
